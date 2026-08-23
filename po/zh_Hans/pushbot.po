@@ -22,8 +22,8 @@ msgstr "<br/>会因服务器稳定性、连接频繁等原因导致获取失败<
 msgid "Scheduled Push"
 msgstr "定时推送"
 
-msgid "If no secondary router and good signal, reduce the above values.<br/>Adjust if frequent disconnects occur due to WiFi sleep.<br/>..╮(╯_╰）╭.."
-msgstr "若无二级路由设备，信号强度良好，可以减少以上数值<br/>因夜间 wifi 休眠较为玄学，遇到设备频繁推送断开，烦请自行调整参数<br/>..╮(╯_╰）╭.."
+msgid "If there is no secondary router and the signal is good, these values can be reduced.<br/>Adjust parameters if devices frequently disconnect due to WiFi sleep mode."
+msgstr "若无二级路由且信号良好，可适当减小上述数值。<br/>若因设备 WiFi 休眠导致频繁误报离线，请适当调大检测参数。"
 
 msgid "Lite Mode"
 msgstr "精简模式"
@@ -655,3 +655,144 @@ msgstr "Mattermost Webhook URL"
 
 msgid "Mattermost Incoming Webhook URL<br>Starts with https://your-mattermost/hooks/<br><br>"
 msgstr "Mattermost Webhook 机器人地址<br>以 https://你的域名/hooks/ 开头<br><br>"
+
+msgid "PushBot Log"
+msgstr "PushBot 日志"
+
+msgid "Displays real-time logs and status records produced by PushBot."
+msgstr "展示 PushBot 实时产生的运行日志与状态记录。"
+
+msgid "No log data available."
+msgstr "暂无日志数据。"
+
+msgid "Log is empty."
+msgstr "日志为空。"
+
+msgid "Log refreshed."
+msgstr "日志已刷新。"
+
+msgid "Log cleared successfully."
+msgstr "日志清空成功。"
+
+msgid "Failed to clear log: "
+msgstr "清空日志失败："
+
+msgid "Failed to read log file."
+msgstr "读取日志文件失败。"
+
+msgid "Sending Test Message"
+msgstr "正在发送测试消息"
+
+msgid "Push test message is being sent..."
+msgstr "正在触发推送测试..."
+
+msgid "Test message triggered. Check log or client for details."
+msgstr "已触发测试消息，请查看日志或接收端。"
+
+msgid "Failed to trigger test: "
+msgstr "触发测试失败："
+
+msgid "Sending Scheduled Report"
+msgstr "正在发送状态报告"
+
+msgid "Manual status report is being sent..."
+msgstr "正在触发手动状态推送..."
+
+msgid "Status report triggered. Check log or client for details."
+msgstr "已触发状态推送，请查看日志或接收端。"
+
+msgid "Failed to send status report: "
+msgstr "发送状态报告失败："
+
+msgid "Testing Temperature Command"
+msgstr "正在测试温度命令"
+
+msgid "Reading device temperature sensors..."
+msgstr "正在读取设备传感器..."
+
+msgid "Temperature Sensor Output"
+msgstr "温度传感器读数输出"
+
+msgid "Sensor Value: "
+msgstr "传感器读数："
+
+msgid "No temperature output returned. Please check sensor command."
+msgstr "未返回温度读数，请检查温度命令。"
+
+msgid "Failed to test temperature command: "
+msgstr "测试温度命令失败："
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Online"
+msgstr "在线"
+
+msgid "Unknown Device"
+msgstr "未知设备"
+
+msgid "No online devices detected currently or PushBot service is not running."
+msgstr "暂无在线设备或 PushBot 服务未启动。"
+
+msgid "Displays devices currently monitored and recorded by PushBot."
+msgstr "展示当前 PushBot 监控并记录的在线设备。"
+
+msgid "Refresh List"
+msgstr "刷新列表"
+
+msgid "Client list refreshed."
+msgstr "设备列表已刷新。"
+
+msgid "Clear Log"
+msgstr "清空日志"
+
+msgid "Auto Refresh"
+msgstr "自动刷新"
+
+msgid "Refresh"
+msgstr "刷新"
+
+msgid "Local Device Name"
+msgstr "本设备名称"
+
+msgid "DingTalk Bot Webhook, enter only the part after access_token=<br>Get call code <a href=\"https://open.dingtalk.com/document/robots/custom-robot-access\" target=\"_blank\">Click Here</a><br><br>"
+msgstr "钉钉机器人 Webhook，只输入access_token=后面的即可<br>调用代码获取 <a href=\"https://open.dingtalk.com/document/robots/custom-robot-access\" target=\"_blank\">点击这里</a><br><br>"
+
+msgid "WeCom Bot Webhook, enter only the part after key=<br>Get call code <a href=\"https://developer.work.weixin.qq.com/document/path/91770\" target=\"_blank\">Click Here</a><br><br>"
+msgstr "企业微信机器人 Webhook，只输入key=后面的即可<br>调用代码获取 <a href=\"https://developer.work.weixin.qq.com/document/path/91770\" target=\"_blank\">点击这里</a><br><br>"
+
+msgid "PushPlus Token<br>Get call code <a href=\"http://pushplus.plus\" target=\"_blank\">Click Here</a><br><br>"
+msgstr "PushPlus Token<br>调用代码获取 <a href=\"http://pushplus.plus\" target=\"_blank\">点击这里</a><br><br>"
+
+msgid "Feishu WebHook<br>Get call code <a href=\"https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNx0jN\" target=\"_blank\">Click Here</a><br><br>"
+msgstr "飞书 WebHook<br>调用代码获取 <a href=\"https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNx0jN\" target=\"_blank\">点击这里</a><br><br>"
+
+msgid "Bark Token<br>Get call code <a href=\"https://github.com/Finb/Bark\" target=\"_blank\">Click Here</a><br><br>"
+msgstr "Bark Token<br>调用代码获取 <a href=\"https://github.com/Finb/Bark\" target=\"_blank\">点击这里</a><br><br>"
+
+msgid "PushDeer Key<br>Get call code <a href=\"https://www.pushdeer.com\" target=\"_blank\">Click Here</a><br><br>"
+msgstr "PushDeer Key<br>调用代码获取 <a href=\"https://www.pushdeer.com\" target=\"_blank\">点击这里</a><br><br>"
+
+msgid "Avoid special characters. The command output must return a numeric value for temperature comparison."
+msgstr "避免使用特殊字符。命令输出必须返回纯数字用于温度比较。"
+
+msgid "Ensure SSH key-based authentication is configured on the PVE host.<br/>Example configuration:<br/>opkg update && opkg install openssh-client openssh-keygen<br/>ssh-keygen -t rsa<br/>ssh root@10.0.0.2 \"cat >> ~/.ssh/authorized_keys\" < ~/.ssh/id_rsa.pub<br/>ssh -i ~/.ssh/id_rsa root@10.0.0.2 sensors"
+msgstr "请确保已在 PVE 宿主机上配置 SSH 密钥登录。<br/>配置参考：<br/>opkg update && opkg install openssh-client openssh-keygen<br/>ssh-keygen -t rsa<br/>ssh root@10.0.0.2 \"cat >> ~/.ssh/authorized_keys\" < ~/.ssh/id_rsa.pub<br/>ssh -i ~/.ssh/id_rsa root@10.0.0.2 sensors"
+
+msgid "Please ensure configurations are correct to avoid unexpected reboots."
+msgstr "请确保相关配置正确，避免引起异常重启。"
+
+msgid "Executes redials only during DND hours to minimize impact on daytime network usage."
+msgstr "仅在免打扰时段内执行重拨，避免影响日间正常网络使用。"
+
+msgid "Executes only when all listed devices are offline.<br/>After 1 hour of DND, watched devices with low traffic (< 100KB/min) for 5 minutes are considered offline."
+msgstr "仅在列表内所有关注设备均离线时执行。<br/>进入免打扰 1 小时后，若关注设备 5 分钟内流量低于 100KB/min 则判定为离线。"
+
+msgid "Options 1 and 2 will not alter configurations (max 2 retries).<br/>Option 3 creates a backup before attempting automatic repair.<br/>Please use with caution."
+msgstr "选项 1 和 2 不会更改系统配置（最多重试 2 次）。<br/>选项 3 将在自动修复前备份配置。<br/>非必要请勿随意启用。"
+
+msgid "Ensure public IP is obtainable via redial, otherwise redial will cause network interruption.<br/>Not applicable for carrier-grade NAT (CGNAT) environments."
+msgstr "请确保重新拨号可获取到公网 IP，否则重拨会导致网络中断。<br/>大内网 (CGNAT) 环境下不建议启用此功能。"
+
+
+

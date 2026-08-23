@@ -1,11 +1,33 @@
 {
 	"luci-app-pushbot": {
-		"description": "Grant UCI access for luci-app-pushbot",
+		"description": "Grant access for luci-app-pushbot",
 		"read": {
-			"uci": [ "pushbot" ]
+			"uci": [ "pushbot" ],
+			"file": {
+				"/tmp/pushbot/pushbot.log": [ "read" ],
+				"/tmp/pushbot/ipAddress": [ "read" ],
+				"/tmp/pushbot/soc_tmp": [ "read" ],
+				"/usr/bin/pushbot/api/diy.json": [ "read" ],
+				"/usr/bin/pushbot/api/ipv4.list": [ "read" ],
+				"/usr/bin/pushbot/api/ipv6.list": [ "read" ],
+				"/usr/bin/pushbot/api/ip_blacklist": [ "read" ]
+			},
+			"ubus": {
+				"file": [ "exec", "read", "write" ],
+				"luci": [ "getInitList", "setInitAction" ],
+				"network.interface": [ "dump", "status" ],
+				"luci-rpc": [ "getNetworkDevices", "getHostHints" ]
+			}
 		},
 		"write": {
-			"uci": [ "pushbot" ]
+			"uci": [ "pushbot" ],
+			"file": {
+				"/tmp/pushbot/pushbot.log": [ "write" ],
+				"/usr/bin/pushbot/api/diy.json": [ "write" ],
+				"/usr/bin/pushbot/api/ipv4.list": [ "write" ],
+				"/usr/bin/pushbot/api/ipv6.list": [ "write" ],
+				"/usr/bin/pushbot/api/ip_blacklist": [ "write" ]
+			}
 		}
 	}
 }

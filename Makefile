@@ -16,6 +16,7 @@ define Package/$(PKG_NAME)/conffiles
 /usr/bin/pushbot/api/diy.json
 /usr/bin/pushbot/api/ipv4.list
 /usr/bin/pushbot/api/ipv6.list
+/usr/bin/pushbot/api/ip_blacklist
 endef
 
 include $(TOPDIR)/feeds/luci/luci.mk
