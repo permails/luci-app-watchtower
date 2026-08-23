@@ -1,17 +1,17 @@
-{
-    "_api": "这是 PushDeer推送 api 文件",
-    "_api": "【PushDeer推送】",
+﻿{
+    "_api": "杩欐槸 PushDeer鎺ㄩ€?api 鏂囦欢",
+    "_api": "銆怭ushDeer鎺ㄩ€併€?,
     
     "url": "${pushdeer_srv}/message/push",
     "data": "@${tempjsonpath}",
     "content_type": "Content-Type:application/json",
-    "str_title_start": "**【",
-    "str_title_end": "】**",
+    "str_title_start": "**銆?,
+    "str_title_end": "銆?*",
     "str_linefeed": "\\n\\n",
     "str_splitline": "\\n\\n---\\n\\n",
     "str_space": " ",
     "str_tab": " ",
-    "table_tab": "┋",
+    "table_tab": "鈹?,
     "font_green": "",
     "font_green2": "",
     "font_red": "",

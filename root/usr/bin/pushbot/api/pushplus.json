@@ -1,6 +1,6 @@
-{
-    "_api": "这是 Pushbot:PushPlus api 文件",
-    "_api": "【PushPlus推送】",
+﻿{
+    "_api": "杩欐槸 Pushbot:PushPlus api 鏂囦欢",
+    "_api": "銆怭ushPlus鎺ㄩ€併€?,
     
     "url": "http://www.pushplus.plus/send",
     "data": "@${tempjsonpath}",

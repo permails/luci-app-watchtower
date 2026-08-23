@@ -1,6 +1,6 @@
-#!/bin/sh
+﻿#!/bin/sh
 
-# 读取设置文件
+# 璇诲彇璁剧疆鏂囦欢
 function get_config(){
 	while [[ "$*" != "" ]]; do
 		eval ${1}='`uci get pushbot.pushbot.$1`' 2>/dev/null
@@ -8,7 +8,7 @@ function get_config(){
 	done
 }
 
-# 初始化设置信息
+# 鍒濆鍖栬缃俊鎭?
 source /usr/bin/pushbot/i18n.sh
 
 function read_config(){
@@ -57,7 +57,7 @@ function read_config(){
 	
 	[ -z "$jsonpath" ] || [ ! -f "$jsonpath" ] && jsonpath="/usr/bin/pushbot/api/dingding.json"
 
-# 字符串读取
+# 瀛楃涓茶鍙?
 	str_title_start=`/usr/bin/jq -r '.str_title_start' ${jsonpath}`
 	str_title_end=`/usr/bin/jq -r '.str_title_end' ${jsonpath}`
 	str_linefeed=`/usr/bin/jq -r '.str_linefeed' ${jsonpath}`
@@ -79,7 +79,7 @@ function read_config(){
 	
 	
 
-# 初始化
+# 鍒濆鍖?
 function pushbot_init(){
 	enable_detection
 	if [ -f "/usr/bin/pushbot/errlog" ]; then
@@ -103,7 +103,7 @@ function pushbot_init(){
 	return 0
 }
 
-# 推送
+# 鎺ㄩ€?
 function diy_send(){
 	( ! echo "$lite_enable"|grep -q "content" ) && ( ! echo "$lite_enable"|grep -q "nowtime" ) && local nowtime=`date "+%Y-%m-%d %H:%M:%S"`
 	local diyurl=`/usr/bin/jq -r .url ${3}` && local diyurl=`eval echo ${diyurl}`
@@ -119,7 +119,7 @@ function diy_send(){
 	curl -X POST -H "$content_type" -d "${data}" "${diyurl}"
 }
 
-# 下载设备MAC厂商信息
+# 涓嬭浇璁惧MAC鍘傚晢淇℃伅
 function down_oui(){
 	[ -f ${oui_base} ] && local logrow=$(grep -c "" ${oui_base}) || local logrow="0"
 	[ $logrow -lt "10" ] && rm -f ${oui_base} >/dev/null 2>&1
@@ -139,7 +139,7 @@ utstarcom\|volans\|xerox\|xiaomi\|zdc\|zhongxing\|smartisan" > ${oui_base} && ec
 	fi
 }
 
-# 清理临时文件
+# 娓呯悊涓存椂鏂囦欢
 function deltemp(){
 	unset title	content ipAddress_logrow online_list online_mac mac_online_status
 	rm -f ${dir}title ${dir}content ${dir}tmp_downlist ${dir}send_enable.lock ${tempjsonpath} >/dev/null 2>&1
@@ -148,7 +148,7 @@ function deltemp(){
 	[ $logrow -gt 500 ] && sed -i '1,100d' ${logfile} && echo "`date "+%Y-%m-%d %H:%M:%S"`  [Cleanup] Log limit exceeded, deleting first 100 lines" >> ${logfile}
 }
 
-# 检测程序开关
+# 妫€娴嬬▼搴忓紑鍏?
 function enable_detection(){
 	[ ! "$1" ] && local time_n=1
 	for i in `seq 1 $time_n`; do
@@ -156,7 +156,7 @@ function enable_detection(){
 	done
 }
 
-# 获取 ip
+# 鑾峰彇 ip
 function getip(){
 	[ ! "$1" ] && return
 	if [ $1 == "wanipv4" ] ;then
@@ -174,7 +174,7 @@ function getip(){
 		local hostIP=`get_hostipv4`
 		[ -z "$hostIP" ] && local hostIP=`get_hostipv4`
 		[ -z "$hostIP" ] && local hostIP=`get_hostipv4`
-		echo $hostIP # 重试，偷懒，有空再优化
+		echo $hostIP # 閲嶈瘯锛屽伔鎳掞紝鏈夌┖鍐嶄紭鍖?
 	elif [ $1 == "wanipv6" ] ;then
 		[ ! -z "$ipv6_interface" ] && local wanIPv6=$(ip addr show ${ipv6_interface}|grep -v deprecated|grep -A1 'inet6 [^f:]'|sed -nr ':a;N;s#^ +inet6 ([a-f0-9:]+)/.+? scope global .*? valid_lft ([0-9]+sec) .*#\2 \1#p;ta'|sort -nr|head -n1|awk '{print $2}')
 		[ -z "$ipv6_interface" ] && local wanIPv6=$(ip addr show|grep -v deprecated|grep -A1 'inet6 [^f:]'|sed -nr ':a;N;s#^ +inet6 ([a-f0-9:]+)/.+? scope global .*? valid_lft ([0-9]+sec) .*#\2 \1#p;ta'|sort -nr|head -n1|awk '{print $2}')
@@ -190,24 +190,24 @@ function getip(){
 		local hostIPv6=`get_hostipv6`
 		[ -z "$hostIPv6" ] && local hostIPv6=`get_hostipv6`
 		[ -z "$hostIPv6" ] && local hostIPv6=`get_hostipv6`
-		echo $hostIPv6 # 重试，偷懒，有空再优化
+		echo $hostIPv6 # 閲嶈瘯锛屽伔鎳掞紝鏈夌┖鍐嶄紭鍖?
 	fi
 }
 
-# 获取接口信息
+# 鑾峰彇鎺ュ彛淇℃伅
 function getinterfacelist(){
 	[ `ubus list|grep -w -i "network.interface.wan"|wc -l` -ge "1" ] && ubus call network.interface.wan status && return
 	[ `ubus list|grep -i "network.interface."|grep -v "loopback"|grep -v "wan6"|wc -l` -eq "1" ] && ubus call `ubus list|grep "network.interface."|grep -v "loopback"` status && return
 }
 
-# 获取接口在线时间
+# 鑾峰彇鎺ュ彛鍦ㄧ嚎鏃堕棿
 function getinterfaceuptime(){
 	getinterfacelist|grep \"uptime\"|sed $'s/\"uptime": //g'|sed $'s/\,//g'
 }
 
-# 查询 mac 地址
+# 鏌ヨ mac 鍦板潃
 function getmac(){
-	( echo "$tmp_mac"|grep -q "unknown" ) && unset tmp_mac # 为unknown时重新读取
+	( echo "$tmp_mac"|grep -q "unknown" ) && unset tmp_mac # 涓簎nknown鏃堕噸鏂拌鍙?
 	[ -f "${dir}ipAddress" ] && [ -z "$tmp_mac" ] && local tmp_mac=`cat ${dir}ipAddress|grep -w ${1}|awk '{print $2}'|grep -v "^$"|sort -u|head -n1`
 	[ -f "${dir}tmp_downlist" ] && [ -z "$tmp_mac" ] && local tmp_mac=`cat ${dir}tmp_downlist|grep -w ${1}|awk '{print $2}'|grep -v "^$"|sort -u|head -n1`
 	[ -f "/var/dhcp.leases" ] && [ -z "$tmp_mac" ] && local tmp_mac=`cat /var/dhcp.leases|grep -w ${1}|awk '{print $2}'|grep -v "^$"|sort -u|head -n1`
@@ -216,14 +216,14 @@ function getmac(){
 	echo "$tmp_mac"
 }
 
-# 查询主机名
+# 鏌ヨ涓绘満鍚?
 function getname(){
 	[ -z "$tmp_name" ] && local tmp_name=`echo "$device_aliases"|grep -i $2|awk '{print $2}'|grep -v "^$"|sort -u|head -n1`
 	[ -f "${dir}ipAddress" ] && [ -z "$tmp_name" ] && local tmp_name=`cat ${dir}ipAddress|grep -w ${1}|awk '{print $3}'|grep -v "^$"|sort -u|head -n1`
 	[ -f "${dir}tmp_downlist" ] && [ -z "$tmp_name" ] && local tmp_name=`cat ${dir}tmp_downlist|grep -w ${1}|awk '{print $3}'|grep -v "^$"|sort -u|head -n1`
-	( ! echo "$tmp_name"|grep -q -w "unknown\|*" ) && [ ! -z "$tmp_name" ] && echo "$tmp_name" && return || unset tmp_name # 为unknown时重新读取
+	( ! echo "$tmp_name"|grep -q -w "unknown\|*" ) && [ ! -z "$tmp_name" ] && echo "$tmp_name" && return || unset tmp_name # 涓簎nknown鏃堕噸鏂拌鍙?
 	[ -f "/var/dhcp.leases" ] && [ -z "$tmp_name" ] && local tmp_name=`cat /var/dhcp.leases|grep -w ${1}|awk '{print $4}'|grep -v "^$"|sort -u|head -n1`
-	( ! echo "$tmp_name"|grep -q -w "unknown\|*" ) && [ ! -z "$tmp_name" ] && echo "$tmp_name" && return || unset tmp_name # 为unknown时重新读取
+	( ! echo "$tmp_name"|grep -q -w "unknown\|*" ) && [ ! -z "$tmp_name" ] && echo "$tmp_name" && return || unset tmp_name # 涓簎nknown鏃堕噸鏂拌鍙?
 	[ -z "$dhcp_config" ] && dhcp_config=`uci show dhcp|grep "ip\|mac\|name"`
 	for dhcp_config_str in "host" "domain"; do
 		local dhcp_ip_n=`echo "$dhcp_config"|grep -w ^dhcp.@${dhcp_config_str}.*ip=.${1}|sed -nr 's#^dhcp.(.*).ip.*#\1#gp'` 2>/dev/null
@@ -232,14 +232,14 @@ function getname(){
 		[ ! -z "$dhcp_mac_n" ] && [ -z "$tmp_name" ] && local tmp_name=`uci get dhcp.${dhcp_ip_n}.name` 2>/dev/null
 		[ ! -z "$tmp_name" ] && break
 	done
-	( ! echo "$tmp_name"|grep -q -w "unknown\|*" ) && [ ! -z "$tmp_name" ] && echo "$tmp_name" && return || unset tmp_name # 为unknown时重新读取
+	( ! echo "$tmp_name"|grep -q -w "unknown\|*" ) && [ ! -z "$tmp_name" ] && echo "$tmp_name" && return || unset tmp_name # 涓簎nknown鏃堕噸鏂拌鍙?
 	[ -f "$oui_base" ] && local tmp_name=$(cat $oui_base|grep -i $(echo "$2"|cut -c 1,2,4,5,7,8)|sed -nr 's#^.*16)..(.*)#\1#gp'|sed 's/ /_/g')
 	[ ! -z "$oui_data" ] && [ "$oui_data" -eq "4" ] && local tmp_name=$(curl -sS "https://standards-oui.ieee.org/oui/oui.txt"|grep -i $(echo "$2"|cut -c 1,2,4,5,7,8)|sed -nr 's#^.*16)..(.*)#\1#gp'|sed 's/ /_/g')
 	[ -z "$tmp_name" ] && local tmp_name="unknown"
 	echo "$tmp_name"
 }
 
-# 查询设备接口
+# 鏌ヨ璁惧鎺ュ彛
 function getinterface(){
 	[ -f "${dir}ipAddress" ] && local ip_interface=`cat ${dir}ipAddress|grep -w ${1}|awk '{print $5}'|grep -v "^$"|sort -u|head -n1`
 	[ -f "${dir}tmp_downlist" ] && [ -z "$ip_interface" ] && local ip_interface=`cat ${dir}tmp_downlist|grep -w ${1}|awk '{print $5}'|grep -v "^$"|sort -u|head -n1`
@@ -265,7 +265,7 @@ function getping(){
 	( echo "$ip_ms"|grep -q "ms" )
 }
 
-# CPU 占用率
+# CPU 鍗犵敤鐜?
 function getcpu(){
 	local AT=$(cat /proc/stat|grep "^cpu "|awk '{print $2+$3+$4+$5+$6+$7+$8 " " $2+$3+$4+$7+$8}')
 	sleep 3
@@ -273,16 +273,16 @@ function getcpu(){
 	printf "%.01f%%" $(echo ${AT} ${BT}|awk '{print (($4-$2)/($3-$1))*100}')
 }
 
-# 获取SOC温度 （取所有传感器温度最大值）
+# 鑾峰彇SOC娓╁害 锛堝彇鎵€鏈変紶鎰熷櫒娓╁害鏈€澶у€硷級
 function soc_temp(){
-	[ -z "$soc_code" ] && local soctemp=`sensors 2>/dev/null|grep °C|sed -nr 's#^.*:.*\+(.*)°C .*#\1#gp'|sort -nr|head -n1|awk '{printf "%.0f\n", $1}'`
+	[ -z "$soc_code" ] && local soctemp=`sensors 2>/dev/null|grep 掳C|sed -nr 's#^.*:.*\+(.*)掳C .*#\1#gp'|sort -nr|head -n1|awk '{printf "%.0f\n", $1}'`
 	[ -z "$soc_code" ] && [ -z "$soctemp" ] && local soctemp=`cat /sys/class/thermal/thermal_zone*/temp 2>/dev/null|sort -nr|head -n1|cut -c-2`
-	[ "$soc_code" == "pve" ] && [ ! -z "$pve_host" ] && local soctemp=`ssh -i ~/.ssh/id_rsa root@${pve_host} -p ${pve_port} sensors 2>/dev/null|grep °C|sed -nr 's#^.*:.*\+(.*)°C .*#\1#gp'|sort -nr|head -n1`
+	[ "$soc_code" == "pve" ] && [ ! -z "$pve_host" ] && local soctemp=`ssh -i ~/.ssh/id_rsa root@${pve_host} -p ${pve_port} sensors 2>/dev/null|grep 掳C|sed -nr 's#^.*:.*\+(.*)掳C .*#\1#gp'|sort -nr|head -n1`
 	[ ! -z "$soctemp" ] && echo "$soctemp" && return
 	[ ! -z "$soc_code" ] && eval `echo "$soc_code"` 2>/dev/null
 }
 
-# 流量数据
+# 娴侀噺鏁版嵁
 function usage(){
 	if [ ! -x "/usr/sbin/wrtbwmon" ] && [ ! -x "/usr/sbin/nlbw" ]; then return; fi
 	[ ! "$1" ] && return
@@ -309,7 +309,7 @@ function usage(){
 	fi
 }
 
-# 流量数据单位换算
+# 娴侀噺鏁版嵁鍗曚綅鎹㈢畻
 function bytes_for_humans {
 	[ ! "$1" ] && return
 	[ "$1" -gt 1073741824 ] && echo "`awk 'BEGIN{printf "%.2f\n",'$1'/'1073741824'}'` G" && return
@@ -318,7 +318,7 @@ function bytes_for_humans {
 	echo "${1} bytes"
 }
 
-# 设备异常流量检测
+# 璁惧寮傚父娴侀噺妫€娴?
 function get_client_usage(){
 	[ -z "$client_usage" ] && return
 	[ "$client_usage" -ne "1" ] && return
@@ -364,32 +364,32 @@ function get_client_usage(){
 	fi
 }
 
-# 时间单位换算
+# 鏃堕棿鍗曚綅鎹㈢畻
 function time_for_humans {
 	[ ! "$1" ] && return
 	if [ "$1" -lt 60 ]; then
-		echo "${1} 秒"
+		echo "${1} 绉?
 	elif [ "$1" -lt 3600 ]; then
 		local usetime_min=`expr $1 / 60`
 		local usetime_sec=`expr $usetime_min \* 60`
 		local usetime_sec=`expr $1 - $usetime_sec`
-		echo "${usetime_min} 分 ${usetime_sec} 秒"
+		echo "${usetime_min} 鍒?${usetime_sec} 绉?
 	elif [ "$1" -lt 86400 ]; then
 		local usetime_hour=`expr $1 / 3600`
 		local usetime_min=`expr $usetime_hour \* 3600`
 		local usetime_min=`expr $1 - $usetime_min`
 		local usetime_min=`expr $usetime_min / 60`
-		echo "${usetime_hour} 小时 ${usetime_min} 分"
+		echo "${usetime_hour} 灏忔椂 ${usetime_min} 鍒?
 	else
 		local usetime_day=`expr $1 / 86400`
 		local usetime_hour=`expr $usetime_day \* 86400`
 		local usetime_hour=`expr $1 - $usetime_hour`
 		local usetime_hour=`expr $usetime_hour / 3600`
-		echo "${usetime_day} 天 ${usetime_hour} 小时"
+		echo "${usetime_day} 澶?${usetime_hour} 灏忔椂"
 	fi
 }
 
-# 计算字符真实长度
+# 璁＄畻瀛楃鐪熷疄闀垮害
 function length_str {
 	[ ! "$1" ] && return
 	local length_zh=`echo "$1"|awk '{print gensub(/[\u4e00-\u9FA5A-Za-z0-9_]/,"","g",$0)}'|awk -F "" '{print NF}'`
@@ -397,7 +397,7 @@ function length_str {
 	echo `expr $length_zh / 3 \* 2 + $length_en`
 }
 
-# 截取字符，避免中文乱码
+# 鎴彇瀛楃锛岄伩鍏嶄腑鏂囦贡鐮?
 function cut_str {
 	[ ! "$1" ] && return
 	[ ! "$2" ] && return
@@ -413,7 +413,7 @@ function cut_str {
 	echo $(echo "$1"|cut -c -$temp_length)"..."
 }
 
-# 随机数
+# 闅忔満鏁?
 function rand(){
     local min=$1
     local max=$(($2- $min + 1))
@@ -421,7 +421,7 @@ function rand(){
     echo $(($num % $max + $min))
 }
 
-# 在线设备列表
+# 鍦ㄧ嚎璁惧鍒楄〃
 function pushbot_first(){
 	[ -f "${dir}ipAddress" ] && local IPLIST=`cat ${dir}ipAddress|awk '{print $1}'|grep -v "^$"|sort -u`
 	for ip in $IPLIST; do
@@ -443,7 +443,7 @@ function pushbot_first(){
 	done
 	wait
 }
-# 创建计划任务
+# 鍒涘缓璁″垝浠诲姟
 function pushbot_cron(){
 	function del_cron(){
 		( echo `crontab -l 2>/dev/null`|grep -q "pushbot" ) && crontab -l > conf && sed -i "/pushbot/d" conf && crontab conf && rm -f conf >/dev/null 2>&1
@@ -458,24 +458,24 @@ function pushbot_cron(){
 		return
 	fi
 
-	# 重置流量
+	# 閲嶇疆娴侀噺
 	if [ ! -z "$reset_regularly" ] && [ "$reset_regularly" -eq "1" ]; then
 		crontab -l 2>/dev/null > conf && echo -e "0 0 * * * rm /tmp/pushbot/usage.db >/dev/null 2>&1" >> conf && crontab conf && rm -f conf >/dev/null 2>&1
 		crontab -l 2>/dev/null > conf && echo -e "0 0 * * * rm /tmp/pushbot/usage6.db >/dev/null 2>&1" >> conf && crontab conf && rm -f conf >/dev/null 2>&1
 	fi
 	[ ! -z "$regular_time_2" ] && local regular_time_2=",${regular_time_2}"
 	[ ! -z "$regular_time_3" ] && local regular_time_3=",${regular_time_3}"
-	# 定时发送
+	# 瀹氭椂鍙戦€?
 	if [ ! -z "$regular_time" ] || [ ! -z "$regular_time_2" ] || [ ! -z "$regular_time_3" ]; then
 		crontab -l 2>/dev/null > conf && echo -e "0 $regular_time$regular_time_2$regular_time_3 * * * /usr/bin/pushbot/pushbot send &" >> conf && crontab conf && rm -f conf >/dev/null 2>&1
-	# 间隔发送
+	# 闂撮殧鍙戦€?
 	elif [ ! -z "$interval_time" ]; then
 		crontab -l 2>/dev/null > conf && echo -e "0 */$interval_time * * * /usr/bin/pushbot/pushbot send &" >> conf && crontab conf && rm -f conf >/dev/null 2>&1
 	fi
 	re_cron
 }
 
-# 免打扰检测
+# 鍏嶆墦鎵版娴?
 function pushbot_disturb(){
 	[ -z "$pushbot_sheep" ] || [ -z "$starttime" ] || [ -z "$endtime" ] && return 0
 	if [ `date +%H` -ge $endtime -a $starttime -lt $endtime ] || [ `date +%H` -lt $starttime -a $starttime -lt $endtime ] || [ `date +%H` -lt $starttime -a `date +%H` -ge $endtime -a $starttime -gt $endtime ]; then
@@ -497,7 +497,7 @@ function pushbot_disturb(){
 	fi
 }
 
-# 文件锁
+# 鏂囦欢閿?
 function LockFile(){
 	if [ $1 = "lock" ] ;then
 		[ ! -f "${dir}pushbot.lock" ] && > ${dir}pushbot.lock && return
@@ -510,7 +510,7 @@ function LockFile(){
 	return 0
 }
 
-# 检测黑白名单
+# 妫€娴嬮粦鐧藉悕鍗?
 function blackwhitelist(){
 	[ ! "$1" ] && return 1
 	[ -z "$pushbot_whitelist" ] && [ -z "$pushbot_blacklist" ] && [ -z "$pushbot_interface" ] && [ -z "$MAC_online_list" ] && [ -z "$MAC_offline_list" ] && return 0
@@ -546,7 +546,7 @@ $js_str
 EOF
 }
 
-# 重启网络服务
+# 閲嶅惎缃戠粶鏈嶅姟
 function network_restart(){
 cat>${dir}network_restart<<EOF
 #!/bin/sh
@@ -558,7 +558,7 @@ EOF
 	rm -f ${dir}network_restart >/dev/null 2>&1
 }
 
-# 查看无人值守任务设备是否在线
+# 鏌ョ湅鏃犱汉鍊煎畧浠诲姟璁惧鏄惁鍦ㄧ嚎
 function geterrdevicealiases(){
 	[ -z "$err_device_aliases" ] && return
 	[ -f ${dir}ipAddress ] && local logrow=$(grep -c "" ${dir}ipAddress) || local logrow="0";[ $logrow -eq "0" ] && return
@@ -566,7 +566,7 @@ function geterrdevicealiases(){
 	for mac in $MACLIST; do
 		[ -z "$err_mac" ] && [ ! -z "$mac" ] && local err_mac=`echo "$err_device_aliases"|grep -i $mac|grep -v "^$"|sort -u|head -n1`
 	done
-	# 进入免打扰时间已经超过一小时
+	# 杩涘叆鍏嶆墦鎵版椂闂村凡缁忚秴杩囦竴灏忔椂
 	if [ ! -z "$sheep_starttime" ] && [ "$((`date +%s`-$sheep_starttime))" -ge "3600" ]; then
 		> ${dir}sheep_usage
 		local MACLIST=`echo "$err_device_aliases"|grep -v "^$"|sort -u`
@@ -583,7 +583,7 @@ function geterrdevicealiases(){
 	[ -z "$err_mac" ]
 }
 
-# 无人值守任务
+# 鏃犱汉鍊煎畧浠诲姟
 function unattended(){
 	[ -z "$err_enable" ] || [ "$err_enable" -ne "1" ] && return
 	[ ! -z "$err_sheep_enable" ] && [ "$err_sheep_enable" -eq "1" ] && [ -z "$sheep_starttime" ] && return
@@ -623,7 +623,7 @@ function unattended(){
 	fi
 }
 
-# 检测网络状态
+# 妫€娴嬬綉缁滅姸鎬?
 function rand_geturl(){
 	function getcheck(){
 		local urllist="https://www.163.com https://www.qq.com https://www.baidu.com https://www.qidian.com https://www.douban.com"
@@ -638,7 +638,7 @@ function rand_geturl(){
 			[ ! -z "$network_enable" ] && [ "$network_enable" -eq "404" ] && echo "`date "+%Y-%m-%d %H:%M:%S"` [Network Status] ${MSG_NETWORK_RESTORED}.." >> ${logfile}
 			local network_enable="200"
 		else
-			[ -z "$network_enable" ] || [ "$network_enable" -eq "200" ] && echo "`date "+%Y-%m-%d %H:%M:%S"` 【！！！！】${MSG_NETWORK_DOWN} " >> ${logfile}
+			[ -z "$network_enable" ] || [ "$network_enable" -eq "200" ] && echo "`date "+%Y-%m-%d %H:%M:%S"` 銆愶紒锛侊紒锛併€?{MSG_NETWORK_DOWN} " >> ${logfile}
 			local network_enable="404"
 			[ -z "$network_err_time" ] && network_err_time=`date +%s`
 			if [ ! -z "$network_err_event" ] && [ "$((`date +%s`-$network_err_time))" -ge "600" ]; then
@@ -719,7 +719,7 @@ function rand_geturl(){
 	rm -f /usr/bin/pushbot/autoreboot_count >/dev/null 2>&1
 }
 
-# 检测 ip 状况
+# 妫€娴?ip 鐘跺喌
 function ip_changes(){
 	[ ! -z "$pushbot_ipv4" ] && [ "$pushbot_ipv4" -eq "1" ] && local IPv4=`getip wanipv4`
 	[ ! -z "$pushbot_ipv4" ] && [ "$pushbot_ipv4" -eq "2" ] && local IPv4=`getip hostipv4`
@@ -772,7 +772,7 @@ function ip_changes(){
 	fi
 }
 
-# 检测设备上线
+# 妫€娴嬭澶囦笂绾?
 function up(){
 	[ -f ${dir}ipAddress ] && ( cat ${dir}ipAddress|grep -q -w $1 ) && return
 	local ip_mac=`getmac $1`
@@ -817,7 +817,7 @@ function up(){
 				local content="${str_splitline}${str_title_start}${font_green} ${MSG_NEW_DEVICE_CONNECTED}${font_end}${str_title_end}${str_linefeed}${str_tab}${MSG_CLIENT_NAME}: ${str_space}${str_space}${str_space}${str_space}${str_space}${ip_name}${str_linefeed}${str_tab}${MSG_CLIENT_IP}: ${str_space}${str_space}${str_space}${str_space}${1}${str_linefeed}${str_tab}${MSG_CLIENT_MAC}: ${str_space}${str_space}${str_space}${str_space}${ip_mac}${str_linefeed}${str_tab}${MSG_NET_INTERFACE}: ${str_space}${str_space}${str_space}${str_space}${str_space}${ip_interface}"
 			fi
 			echo "`date "+%Y-%m-%d %H:%M:%S"` ${disturb_text}New device ${ip_name} ${1} connected">> ${logfile}
-			#[ ! -z "$pushbot_blacklist" ] && local title="你偷偷关注的设备上线了"
+			#[ ! -z "$pushbot_blacklist" ] && local title="浣犲伔鍋峰叧娉ㄧ殑璁惧涓婄嚎浜?
 			[ ! -z "$title" ] && echo "$title" >${dir}title
 			[ ! -z "$content" ] && echo -n "$content" >>${dir}content
 		fi
@@ -825,7 +825,7 @@ function up(){
 	LockFile unlock
 }
 
-# 检测设备离线
+# 妫€娴嬭澶囩绾?
 function down(){
 	local ip_mac=`getmac $1`
 	local ip_name=`getname ${1} ${ip_mac}`
@@ -848,7 +848,7 @@ function down(){
 	fi
 }
 
-# 设备离线通知
+# 璁惧绂荤嚎閫氱煡
 function down_send(){
 	[ ! -f "${dir}tmp_downlist" ] && return
 	local IPLIST=`cat ${dir}tmp_downlist|awk '{print $1}'`
@@ -881,12 +881,12 @@ function down_send(){
 	rm -f ${dir}tmp_downlist >/dev/null 2>&1
 }
 
-# 当前设备列表
+# 褰撳墠璁惧鍒楄〃
 function current_device(){
 	( echo "$lite_enable"|grep -q "content" ) || ( echo "$lite_enable"|grep -q "device" ) && return
 	[ -f ${dir}ipAddress ] && local logrow=$(grep -c "" ${dir}ipAddress) || local logrow="0";[ $logrow -eq "0" ] && return
 	[ -f ${dir}usage.db ] && local ip_total_db="${MSG_TOTAL_TRAFFIC}${str_space}${str_space}${str_space}${str_space}"
-	content="${content}${str_splitline}${str_title_start}${font_blue} ${MSG_ONLINE_DEVICES_PREFIX} ${logrow} ${MSG_ONLINE_DEVICES_SUFFIX}${font_end}${str_title_end}${str_linefeed}${str_tab}IP 地址${str_space}${str_space}${str_space}${str_space}${str_space}${str_space}${str_space}${str_space}${str_space}${ip_total_db}${boldstar}客户端名${boldstar}"
+	content="${content}${str_splitline}${str_title_start}${font_blue} ${MSG_ONLINE_DEVICES_PREFIX} ${logrow} ${MSG_ONLINE_DEVICES_SUFFIX}${font_end}${str_title_end}${str_linefeed}${str_tab}IP 鍦板潃${str_space}${str_space}${str_space}${str_space}${str_space}${str_space}${str_space}${str_space}${str_space}${ip_total_db}${boldstar}瀹㈡埛绔悕${boldstar}"
 	local IPLIST=`cat ${dir}ipAddress|awk '{print $1}'`
 	for ip in $IPLIST; do
 		local ip_mac=`getmac ${ip}`
@@ -911,7 +911,7 @@ function current_device(){
 	done
 }
 
-# 检测 cpu 状态
+# 妫€娴?cpu 鐘舵€?
 function cpu_load(){
 	if [ ! -z "$temperature_enable" ] && [ "$temperature_enable" -eq "1" ] && [ ! -z "$temperature" ]; then
 		[ -z "$temperature_time" ] && temperature_time=`date +%s`
@@ -925,10 +925,10 @@ function cpu_load(){
 		fi
 
 		if [ "$((`date +%s`-$temperature_time))" -ge "300" ] && [ -z "$temperaturecd_time" ]; then
-			title="${MSG_CPU_TEMP_HIGH}！"
+			title="${MSG_CPU_TEMP_HIGH}锛?
 			temperaturecd_time=`date +%s`
 			echo "`date "+%Y-%m-%d %H:%M:%S"` ${disturb_text} ${MSG_CPU_TEMP_HIGH}: ${cpu_wendu}" >> ${logfile}
-			content="${content}${str_splitline}${str_title_start}${font_red} ${MSG_CPU_TEMP_HIGH}${font_end}${str_title_end}${str_linefeed}${str_tab}${MSG_CPU_TEMP_WARN1}${str_linefeed}${str_tab}${MSG_WARN_MUTE_1HR}${str_linefeed}${str_tab}${MSG_CUR_TEMP}: ${cpu_wendu}℃"
+			content="${content}${str_splitline}${str_title_start}${font_red} ${MSG_CPU_TEMP_HIGH}${font_end}${str_title_end}${str_linefeed}${str_tab}${MSG_CPU_TEMP_WARN1}${str_linefeed}${str_tab}${MSG_WARN_MUTE_1HR}${str_linefeed}${str_tab}${MSG_CUR_TEMP}: ${cpu_wendu}鈩?
 		elif [ ! -z "$temperaturecd_time" ] && [ "$((`date +%s`-$temperaturecd_time))" -ge "3300" ] ;then
 			unset temperaturecd_time
 		fi
@@ -948,14 +948,14 @@ function cpu_load(){
 
 		if [ "$((`date +%s`-$cpuload_time))" -ge "300" ] && [ -z "$cpucd_time" ]; then
 			unset getlogtop
-			if [ ! -z "$title" ] && ( echo "$title"|grep -q "过高" ); then
-				title="设备报警！"
+			if [ ! -z "$title" ] && ( echo "$title"|grep -q "杩囬珮" ); then
+				title="璁惧鎶ヨ锛?
 			else
-				title="${MSG_CPU_LOAD_HIGH}！"
+				title="${MSG_CPU_LOAD_HIGH}锛?
 			fi
 			cpucd_time=`date +%s`
 			echo "`date "+%Y-%m-%d %H:%M:%S"` ${disturb_text} CPU Load Too High: ${cpu_fuzai}" >> ${logfile}
-			content="${content}${str_splitline}${font_red}${MSG_CPU_LOAD_HIGH}${font_end}${str_linefeed}${str_tab}CPU 负载已连续五分钟超过预设${str_linefeed}${str_tab}${MSG_WARN_MUTE_1HR}${str_linefeed}${str_tab}${MSG_CUR_LOAD}: ${cpu_fuzai}"
+			content="${content}${str_splitline}${font_red}${MSG_CPU_LOAD_HIGH}${font_end}${str_linefeed}${str_tab}CPU 璐熻浇宸茶繛缁簲鍒嗛挓瓒呰繃棰勮${str_linefeed}${str_tab}${MSG_WARN_MUTE_1HR}${str_linefeed}${str_tab}${MSG_CUR_LOAD}: ${cpu_fuzai}"
 			cputop
 		elif [ ! -z "$cpucd_time" ] && [ "$((`date +%s`-$cpucd_time))" -ge "3300" ] ;then
 			unset cpucd_time
@@ -964,7 +964,7 @@ function cpu_load(){
 }
 
 function cputop(){
-	[ -z "$1" ] && content="${content}${str_splitline}${str_title_start} 当前 ${MSG_CPU_TOP3}${str_title_end}"
+	[ -z "$1" ] && content="${content}${str_splitline}${str_title_start} 褰撳墠 ${MSG_CPU_TOP3}${str_title_end}"
 	local gettop=`top -bn 1|grep -v "top -bn 1"`
 	for i in `seq 5 7`; do
 		local top_name=`echo "${gettop}"|awk 'NR=='${i}|awk '{print ($8 ~ /\/bin\/sh|\/bin\/bash/) ? $9 : $8}'`
@@ -977,7 +977,7 @@ function cputop(){
 	[ ! -z "$1" ] && echo "`date "+%Y-%m-%d %H:%M:%S"` [!!ALERT!!] Top 3 CPU Processes: ${logtop}" >> ${logfile}
 }
 
-# 生成日志监控文件，避免后台影响 wait 语句
+# 鐢熸垚鏃ュ織鐩戞帶鏂囦欢锛岄伩鍏嶅悗鍙板奖鍝?wait 璇彞
 function get_syslog(){
 	kill -9 `pgrep -f "logread -f -p notice"` 2>/dev/null
 	[ -z "$web_logged" ] && [ -z "$ssh_logged" ] && [ -z "$web_login_failed" ] && [ -z "$ssh_login_failed" ] && return
@@ -991,7 +991,7 @@ EOF
 	rm -f ${dir}get_syslog >/dev/null 2>&1
 }
 
-# 登录提醒通知
+# 鐧诲綍鎻愰啋閫氱煡
 function login_send(){
 	[ -z "$web_logged" ] && [ -z "$ssh_logged" ] && [ -z "$web_login_failed" ] && [ -z "$ssh_login_failed" ] && return
 	[ ! -f ${dir}login_monitor ] && return
@@ -1010,7 +1010,7 @@ function login_send(){
 		local web_login_mode=`cat ${dir}web_login|grep -w ${login_ip}|awk '{print $3}'|grep -v "^$"|sort -u|head -n1`
 		if [ ! -z "$web_logged" ] && [ "$web_logged" -eq "1" ]; then
 			if [ -z "$title" ]; then
-				title="${login_ip} 通过 Web ${MSG_LOGGED_INTO_ROUTER}"
+				title="${login_ip} 閫氳繃 Web ${MSG_LOGGED_INTO_ROUTER}"
 				content="${content}${str_splitline}${str_title_start}${font_green} ${MSG_LOGIN_INFO}${font_end}${str_title_end}${str_linefeed}${str_tab}${MSG_TIME}: ${str_space}${str_space}${str_space}${str_space}${str_space}${web_login_time}${str_linefeed}${str_tab}${MSG_DEVICE_IP}: ${str_space}${str_space}${str_space}${str_space}${login_ip}${content_mode}"
 			elif ( echo "$title"|grep -q "${MSG_LOGGED_INTO_ROUTER}" ); then
 				title="${login_ip} ${title}"
@@ -1057,7 +1057,7 @@ function login_send(){
 		if [ "$web_login_sum" -ge "$login_max_num" ] ;then
 			if [ ! -z "$web_login_failed" ] && [ "$web_login_failed" -eq "1" ]; then
 				if [ -z "$title" ]; then
-					title="${login_ip} 通过 Web ${MSG_FREQ_LOGIN_ATTEMPT}"
+					title="${login_ip} 閫氳繃 Web ${MSG_FREQ_LOGIN_ATTEMPT}"
 					content="${content}${str_splitline}${str_title_start}${font_red} ${MSG_LOGIN_FAILED}${font_end}${str_title_end}${str_linefeed}${str_tab}${MSG_DEVICE_IP}: ${str_space}${str_space}${str_space}${str_space}${login_ip}"
 					elif ( echo "$title"|grep -q "${MSG_FREQ_LOGIN_ATTEMPT}" ); then
 						title="${login_ip} ${title}"
@@ -1101,7 +1101,7 @@ function login_send(){
 
 }
 
-# 添加黑名单
+# 娣诲姞榛戝悕鍗?
 function add_ip_black(){
 	[ -f "${ip_blacklist_path}" ] && local logrow=$(grep -c "" ${ip_blacklist_path}) || local logrow="0"
 	[ ! -f "${ip_blacklist_path}" ] && local logrow="0"
@@ -1124,7 +1124,7 @@ function add_ip_black(){
 	ipset list ip_blacklist|grep -Eo "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" > ${ip_blacklist_path}
 }
 
-# 发送定时数据
+# 鍙戦€佸畾鏃舵暟鎹?
 function send(){
 	echo "`date "+%Y-%m-%d %H:%M:%S"` [Cron Data] Created scheduled task" >> ${logfile}
 	pushbot_disturb;local send_disturb=$?
@@ -1156,8 +1156,8 @@ function send(){
 
 	if [ -z "$1" ] && [ ! -z "$router_temp" ] && [ "$router_temp" -eq "1" ]; then
 		local cputemp=`soc_temp`
-		[ ! -z "$cputemp" ] && local send_content="${send_content}${str_splitline}${str_title_start}${font_blue} ${MSG_DEVICE_TEMP}${font_end}${str_title_end}${str_linefeed}${str_tab}CPU：${cputemp}℃"
-		[ -z "$cputemp" ] && local send_content="${send_content}${str_splitline}${str_title_start}${font_red} ${MSG_DEVICE_TEMP}${font_end}${str_title_end}${str_linefeed}${str_tab}无法获取${MSG_DEVICE_TEMP}"
+		[ ! -z "$cputemp" ] && local send_content="${send_content}${str_splitline}${str_title_start}${font_blue} ${MSG_DEVICE_TEMP}${font_end}${str_title_end}${str_linefeed}${str_tab}CPU锛?{cputemp}鈩?
+		[ -z "$cputemp" ] && local send_content="${send_content}${str_splitline}${str_title_start}${font_red} ${MSG_DEVICE_TEMP}${font_end}${str_title_end}${str_linefeed}${str_tab}鏃犳硶鑾峰彇${MSG_DEVICE_TEMP}"
 	fi
 
 	if [ -z "$1" ] && [ ! -z "$router_wan" ] && [ "$router_wan" -eq "1" ]; then
@@ -1179,33 +1179,33 @@ function send(){
 		wait
 		local IPLIST=`cat ${dir}ipAddress 2>/dev/null|awk '{print $1}'`
 		[ -f ${dir}ipAddress ] && local logrow=$(grep -c "" ${dir}ipAddress) || local logrow="0"
-		[ "$logrow" -eq "0" ] && local send_content="${send_content}${str_splitline}${str_title_start}${font_red} ${MSG_NO_ONLINE_DEVICES}${font_end}${str_title_end}" || local send_content="${send_content}${str_splitline}${str_title_start}${font_blue} ${MSG_ONLINE_DEVICES_PREFIX} ${logrow} 台${font_end}${str_title_end}"
+		[ "$logrow" -eq "0" ] && local send_content="${send_content}${str_splitline}${str_title_start}${font_red} ${MSG_NO_ONLINE_DEVICES}${font_end}${str_title_end}" || local send_content="${send_content}${str_splitline}${str_title_start}${font_blue} ${MSG_ONLINE_DEVICES_PREFIX} ${logrow} 鍙?{font_end}${str_title_end}"
 		for ip in $IPLIST; do
 			local time_up=`cat ${dir}ipAddress|grep -w ${ip}|awk '{print $4}'|grep -v "^$"|sort -u|head -n1`
 			local time1=`date +%s`
 			local time1=$(time_for_humans `expr ${time1} - ${time_up}`)
 			local ip_mac=`getmac ${ip}`
 			local ip_name=`getname ${ip} ${ip_mac}`
-			local ip_total=`usage get ${ip_mac}`;[ ! -z "$ip_total" ] && local ip_total="${MSG_TOTAL_TRAFFIC}：${ip_total}  "
+			local ip_total=`usage get ${ip_mac}`;[ ! -z "$ip_total" ] && local ip_total="${MSG_TOTAL_TRAFFIC}锛?{ip_total}  "
 			local ip_name=`cut_str $ip_name 18`
-			local send_content="${send_content}${str_linefeed}${str_tab}${font_green2}【${ip_name}】${font_end2}  ${ip}${str_linefeed}${str_tab}${ip_total}在线 ${time1}"
+			local send_content="${send_content}${str_linefeed}${str_tab}${font_green2}銆?{ip_name}銆?{font_end2}  ${ip}${str_linefeed}${str_tab}${ip_total}鍦ㄧ嚎 ${time1}"
 			unset ip_total time_down time_up time1 ip_mac ip_name
 		done
 	fi
 
-	[ ! -z "$device_name" ] && local send_title="【$device_name】${send_title}"
+	[ ! -z "$device_name" ] && local send_title="銆?device_name銆?{send_title}"
 	[ -z "$send_content" ] && local send_content="${str_splitline}${str_title_start} ${MSG_CRON_ERROR_TITLE}${str_title_end}${str_linefeed}${str_tab}${MSG_CRON_ERROR_EMPTY}${str_splitline}"
 	[ "$send_disturb" -eq "0" ] && diy_send "${send_title}" "${send_content}" "${jsonpath}" >/dev/null 2>&1
 	[ $? -eq 1 ] && echo "`date "+%Y-%m-%d %H:%M:%S"` [!!!] Scheduled push failed, please check network or settings" >> ${logfile} || echo "`date "+%Y-%m-%d %H:%M:%S"` ${disturb_text}Scheduled push task completed" >> ${logfile}
 	deltemp
 }
 
-# 初始化
+# 鍒濆鍖?
 read_config
 deltemp
 pushbot_cron
 
-# 限制并发进程
+# 闄愬埗骞跺彂杩涚▼
 [ -z "$thread_num" ] || [ "$thread_num" -eq "0" ] && thread_num=5
 [ -e ${dir}fd1 ] || mkfifo ${dir}fd1
 exec 5<>${dir}fd1
@@ -1215,7 +1215,7 @@ for i in `seq 1 $thread_num`; do
 done
 unset i
 
-# 启动参数
+# 鍚姩鍙傛暟
 if [ "$1" ] ;then
 	[ $1 == "send" ] && send
 	[ $1 == "soc" ] && echo `soc_temp` > ${dir}soc_tmp
@@ -1224,19 +1224,19 @@ if [ "$1" ] ;then
 	exit
 fi
 
-# 载入在线设备
+# 杞藉叆鍦ㄧ嚎璁惧
 pushbot_init;[ $? -eq 1 ] && echo "`date "+%Y-%m-%d %H:%M:%S"` [!!!] Error reading settings, please check settings " >> ${logfile} && exit
 echo "`date "+%Y-%m-%d %H:%M:%S"` [Init] Loading online devices" >> ${logfile}
 > ${dir}send_enable.lock && pushbot_first && deltemp
 echo "`date "+%Y-%m-%d %H:%M:%S"` [Init] Initialization complete" >> ${logfile}
 
-# 循环
+# 寰幆
 while [ "$pushbot_enable" -eq "1" ]; do
 	deltemp
 	usage update
 	pushbot_disturb;disturb=$?
 
-	# 外网IP变化检测
+	# 澶栫綉IP鍙樺寲妫€娴?
 	[ -f ${dir}ipAddress ] && ipAddress_logrow=$(grep -c "" ${dir}ipAddress) || ipAddress_logrow="0";
 	if [ $ipAddress_logrow -ne "0" ]; then
 		online_list=`cat ${dir}ipAddress|awk '{print $2}'|grep -v "^$"|sort -u`
@@ -1250,7 +1250,7 @@ while [ "$pushbot_enable" -eq "1" ]; do
 		ip_changes
 	fi
 
-	# 设备列表
+	# 璁惧鍒楄〃
 	if [ ! -f "${dir}send_enable.lock" ]; then
 		[ ! -z "$title" ] && echo "$title" > ${dir}title
 		[ ! -z "$content" ] && echo "$content" > ${dir}content
@@ -1259,27 +1259,27 @@ while [ "$pushbot_enable" -eq "1" ]; do
 		[ -f "${dir}content" ] && content=`cat ${dir}content` && rm -f ${dir}content >/dev/null 2>&1
 	fi
 
-	# 离线缓存区推送
+	# 绂荤嚎缂撳瓨鍖烘帹閫?
 	[ ! -f "${dir}send_enable.lock" ] && down_send
 
-	# 当前设备列表
+	# 褰撳墠璁惧鍒楄〃
 	[ ! -z "$content" ] && [ ! -f "${dir}send_enable.lock" ] && current_device
 
-	# 无人值守任务
+	# 鏃犱汉鍊煎畧浠诲姟
 	[ ! -f "${dir}send_enable.lock" ] && unattended
 
-	# CPU 检测
+	# CPU 妫€娴?
 	[ ! -f "${dir}send_enable.lock" ] && cpu_load
 
-	# 异常流量检测
+	# 寮傚父娴侀噺妫€娴?
 	[ ! -f "${dir}send_enable.lock" ] && get_client_usage
 
-	# 登录提醒通知
+	# 鐧诲綍鎻愰啋閫氱煡
 	[ ! -f "${dir}send_enable.lock" ] && login_send
 
-	# 通知
+	# 閫氱煡
 	if [ ! -f "${dir}send_enable.lock" ] && [ ! -z "$title" ] && [ ! -z "$content" ]; then
-		[ ! -z "$device_name" ] && title="【$device_name】$title"
+		[ ! -z "$device_name" ] && title="銆?device_name銆?title"
 		( echo "$lite_enable"|grep -q "content" ) && content="$title"
 		[ "$disturb" -eq "0" ] && diy_send "${title}" "${content}" "${jsonpath}" >/dev/null 2>&1
 		[ $? -eq 1 ] && echo "`date "+%Y-%m-%d %H:%M:%S"` [!!!] Push failed, please check network or settings " >> ${logfile}

@@ -1,6 +1,6 @@
-{
-    "_api": "这是 Pushbot:钉钉 api 文件",
-    "_api": "【钉钉推送】",
+﻿{
+    "_api": "杩欐槸 Pushbot:閽夐拤 api 鏂囦欢",
+    "_api": "銆愰拤閽夋帹閫併€?,
     
     "url": "\"https://oapi.dingtalk.com/robot/send?access_token=${dd_webhook}\"",
     "data": "@${tempjsonpath}",
@@ -11,7 +11,7 @@
     "str_splitline": "\\n\\n---\\n\\n",
     "str_space": " ",
     "str_tab": " ",
-    "table_tab": "<font color=#76CCFF>┋</font>",
+    "table_tab": "<font color=#76CCFF>鈹?/font>",
     "font_green": "<font color=#92D050>",
     "font_green2": "<font color=#92D050>",
     "font_red": "<font color=#FF6666>",

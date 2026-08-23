@@ -1,6 +1,6 @@
-{
-    "_api": "这是飞书推送 post 模板信息 api 文件",
-    "_api": "【飞书推送】",
+﻿{
+    "_api": "杩欐槸椋炰功鎺ㄩ€?post 妯℃澘淇℃伅 api 鏂囦欢",
+    "_api": "銆愰涔︽帹閫併€?,
     
     "url": "https://open.feishu.cn/open-apis/bot/v2/hook/${fs_webhook}",
     "data": "@${tempjsonpath}",
@@ -49,7 +49,7 @@
 			{
 				"elements": [
 				{
-					"content": "\"来自${device_name}\"",
+					"content": "\"鏉ヨ嚜${device_name}\"",
 					"tag": "\"lark_md\""
 				}
 				],

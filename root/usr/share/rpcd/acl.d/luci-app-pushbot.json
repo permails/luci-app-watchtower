@@ -1,4 +1,4 @@
-{
+﻿{
 	"luci-app-pushbot": {
 		"description": "Grant access for luci-app-pushbot",
 		"read": {

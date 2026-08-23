@@ -1,4 +1,4 @@
-{
+﻿{
     "url": "${mattermost_webhook}",
     "data": "@${tempjsonpath}",
     "content_type": "Content-Type: application/json",
