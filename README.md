@@ -9,7 +9,7 @@
 
 ## Architecture
 
-- **Web Interface**: Modern LuCI JavaScript (LuCI JS) client-side views (`overview.js`, `setting.js`, `log.js`) with shared helpers and Light/Dark adaptive styling (`htdocs/luci-static/resources/watchtower/common.js`), compatible with OpenWrt 21.02, 22.03, 23.05, 24.10, and 25.x / snapshot builds.
+- **Web Interface**: Modern LuCI JavaScript (LuCI JS) client-side views (`overview.js`, `setting.js`, `log.js`) with shared helpers and Light/Dark adaptive styling (`htdocs/luci-static/resources/watchtower/common.js`), compatible with OpenWrt 23.05, 24.10, and 25.x / snapshot builds.
 - **Backend Daemon & Real-Time Watcher**:
   - Main daemon: `/usr/bin/watchtower/watchtower` managed by `/etc/init.d/watchtower`.
   - Real-time event listener: `/usr/bin/watchtower/rt_watch.sh` (logread / DHCP) and `/etc/hotplug.d/iface/99-watchtower` (WAN interface events) for sub-2-second instant alerts.
