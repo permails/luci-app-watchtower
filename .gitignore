@@ -1,0 +1,27 @@
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Editors & IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OpenWrt / Build artifacts
+*.ipk
+*.apk
+*.lmo
+bin/
+build_dir/
+staging_dir/
+tmp/
+*.log
+
+# Local tooling
+.gemini/
+.agent/
+luci-frontend-design-spec.md

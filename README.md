@@ -165,4 +165,4 @@ Primary configuration parameters are stored in `/etc/config/watchtower`:
 
 ## Contributing and Maintenance
 
-Pull requests, bug reports, and provider additions are welcome via GitHub Issues and Pull Requests. Ensure all contributions maintain POSIX compliance for shell scripts and adhere to the frontend design guidelines in `luci-frontend-design-spec.md`.
+Pull requests, bug reports, and provider additions are welcome via GitHub Issues and Pull Requests. Ensure all contributions maintain POSIX compliance for shell scripts and adhere to standard LuCI JavaScript guidelines.
