@@ -1,0 +1,40 @@
+#!/bin/sh /etc/rc.common
+# Author: permails <logo@permails.com>
+
+START=99
+STOP=10
+
+_log_event() {
+	local dbg=$(uci -q get watchtower.watchtower.debuglevel)
+	[ "$dbg" = "0" ] && return
+	mkdir -p /tmp/watchtower
+	echo "$(date '+%Y-%m-%d %H:%M:%S') [Service] $1" >> /tmp/watchtower/watchtower.log
+}
+
+start() {
+	state=`pgrep -f "/usr/bin/watchtower/watchtower"`
+	if [ ! -z "$state" ]; then
+		restart
+	else
+		_log_event "Watchtower service starting"
+		/usr/bin/watchtower/watchtower &
+		if [ "$(uci -q get watchtower.watchtower.realtime_enable)" = "1" ]; then
+			/usr/bin/watchtower/rt_watch.sh &
+		fi
+	fi
+	echo "watchtower is starting now ..."
+}
+
+stop() {
+	kill -9 `pgrep -f "/usr/bin/watchtower/rt_watch.sh"` 2>/dev/null
+	kill -9 `pgrep -f "/usr/bin/watchtower/watchtower"` 2>/dev/null
+	_log_event "Watchtower service stopped"
+	echo "watchtower exit ..."
+}
+
+restart(){
+	stop
+	sleep 1
+	start
+	echo "restarted."
+}

@@ -1,0 +1,22 @@
+#!/bin/sh
+# Author: permails <logo@permails.com>
+
+[ "$ACTION" = "ifup" ] || [ "$ACTION" = "ifupdate" ] || exit 0
+
+enable=$(uci -q get watchtower.watchtower.watchtower_enable)
+rt=$(uci -q get watchtower.watchtower.realtime_enable)
+[ "$enable" = "1" ] && [ "$rt" = "1" ] || exit 0
+
+ipv4_mode=$(uci -q get watchtower.watchtower.watchtower_ipv4)
+ipv6_mode=$(uci -q get watchtower.watchtower.watchtower_ipv6)
+[ "${ipv4_mode:-0}" != "0" ] || [ "${ipv6_mode:-0}" != "0" ] || exit 0
+
+mkdir -p /tmp/watchtower
+LOCK="/tmp/watchtower/rt_iface.lock"
+[ -f "$LOCK" ] && exit 0
+touch "$LOCK"
+(
+	sleep 2
+	/usr/bin/watchtower/watchtower event_iface "$INTERFACE" "$DEVICE" >/dev/null 2>&1
+	rm -f "$LOCK"
+) &

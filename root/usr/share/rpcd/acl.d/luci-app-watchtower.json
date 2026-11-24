@@ -1,0 +1,41 @@
+{
+	"luci-app-watchtower": {
+		"description": "Grant access for luci-app-watchtower",
+		"read": {
+			"uci": [ "watchtower" ],
+			"file": {
+				"/bin/busybox": [ "exec" ],
+				"/tmp/watchtower/watchtower.log": [ "read" ],
+				"/tmp/watchtower/ipAddress": [ "read" ],
+				"/tmp/watchtower/soc_tmp": [ "read" ],
+				"/tmp/watchtower/soc_detail": [ "read" ],
+				"/usr/bin/watchtower/api/diy.json": [ "read" ],
+				"/usr/bin/watchtower/api/ipv4.list": [ "read" ],
+				"/usr/bin/watchtower/api/ipv6.list": [ "read" ],
+				"/usr/bin/watchtower/api/ip_blacklist": [ "read" ],
+				"/usr/bin/watchtower/api/known_macs": [ "read" ]
+			},
+			"ubus": {
+				"luci": [ "getInitList" ],
+				"network.interface": [ "dump", "status" ],
+				"luci-rpc": [ "getNetworkDevices", "getHostHints" ]
+			}
+		},
+		"write": {
+			"uci": [ "watchtower" ],
+			"file": {
+				"/etc/init.d/watchtower": [ "exec" ],
+				"/usr/bin/watchtower/watchtower": [ "exec" ],
+				"/tmp/watchtower/watchtower.log": [ "write" ],
+				"/usr/bin/watchtower/api/diy.json": [ "write" ],
+				"/usr/bin/watchtower/api/ipv4.list": [ "write" ],
+				"/usr/bin/watchtower/api/ipv6.list": [ "write" ],
+				"/usr/bin/watchtower/api/ip_blacklist": [ "write" ],
+				"/usr/bin/watchtower/api/known_macs": [ "write" ]
+			},
+			"ubus": {
+				"luci": [ "setInitAction" ]
+			}
+		}
+	}
+}

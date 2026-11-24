@@ -1,0 +1,1205 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: luci-app-watchtower\n"
+"POT-Creation-Date: 2026-11-24 13:02+0800\n"
+"PO-Revision-Date: 2026-11-24 13:02+0800\n"
+"Last-Translator: Antigravity AI\n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Device Temperature"
+msgstr ""
+
+msgid "DND List for Any Offline"
+msgstr ""
+
+msgid "<br/>May fail due to server stability or frequent connections.<br/>Not recommended if IP can be obtained via interface.<br/>Access randomly from the above list."
+msgstr ""
+
+msgid "Scheduled Push"
+msgstr ""
+
+msgid "If there is no secondary router and the signal is good, these values can be reduced.<br/>Adjust parameters if devices frequently disconnect due to WiFi sleep mode."
+msgstr ""
+
+msgid "Lite Mode"
+msgstr ""
+
+msgid "sms: SMS"
+msgstr ""
+
+msgid "IPv4 API List"
+msgstr ""
+
+msgid "GitHub Project URL"
+msgstr ""
+
+msgid "Test Temperature Command"
+msgstr ""
+
+msgid "Push Alert After Exceeding Limit"
+msgstr ""
+
+msgid "DND Start Time"
+msgstr ""
+
+msgid "PushDeer Key"
+msgstr ""
+
+msgid "Web Login Alert"
+msgstr ""
+
+msgid "Client List"
+msgstr ""
+
+msgid "Lite Current Device List"
+msgstr ""
+
+msgid "Bark Notification Icon"
+msgstr ""
+
+msgid "DingTalk"
+msgstr ""
+
+msgid "<br/>Special characters may cause sending failure"
+msgstr ""
+
+msgid "Lite Current Time"
+msgstr ""
+
+msgid "DND after all listed devices are offline"
+msgstr ""
+
+msgid "Notify only this interface's devices"
+msgstr ""
+
+msgid "Detection Interval"
+msgstr ""
+
+msgid "MAC Filter 2"
+msgstr ""
+
+msgid "Device Offline Timeout (s)"
+msgstr ""
+
+msgid "IPv6 Change Notification"
+msgstr ""
+
+msgid "Get via URL"
+msgstr ""
+
+msgid "Third-party webhook: WeCom, DingTalk, Feishu, ServerChan<br>SMS/Email: PushPlus not yet open<br>Channel settings: <a href='http://pushplus.plus/doc/extend/webhook.html' target='_blank'>Click Here</a>"
+msgstr ""
+
+msgid "Pause pushes during specified hours.<br/>Scheduled pushes are also blocked during DND."
+msgstr ""
+
+msgid "Ignore whitelist login alerts and block actions. Mask notation not supported."
+msgstr ""
+
+msgid "Bark Sound"
+msgstr ""
+
+msgid "Bark Level"
+msgstr ""
+
+msgid "wechat: PushPlus WeChat Official Account"
+msgstr ""
+
+msgid "Online DND List"
+msgstr ""
+
+msgid "Device Online Timeout (s)"
+msgstr ""
+
+msgid "PushDeer"
+msgstr ""
+
+msgid "mail: Email"
+msgstr ""
+
+msgid "Ensure device can read temperature. Change command in Advanced Settings."
+msgstr ""
+
+msgid "Self-hosted PushDeer Server"
+msgstr ""
+
+msgid "IP Whitelist"
+msgstr ""
+
+msgid "Bark Server"
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "CPU Load Alert"
+msgstr ""
+
+msgid "Ignore List"
+msgstr ""
+
+msgid "PushPlus Custom Webhook"
+msgstr ""
+
+msgid "Ensure key login is set, else scripts will fail!<br/>Google how to install sensors on PVE.<br/>Key login example:<br/>opkg update<br/>opkg install openssh-client openssh-keygen<br/>ssh-keygen -t rsa<br/>ssh root@10.0.0.2 \"tee -a ~/.ssh/id_rsa.pub\" < ~/.ssh/id_rsa.pub<br/>ssh root@10.0.0.2 \"cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys\"<br/>ssh -i ~/.ssh/id_rsa root@10.0.0.2 sensors"
+msgstr ""
+
+msgid "Scheduled Sending"
+msgstr ""
+
+msgid "Scheduled Reboot"
+msgstr ""
+
+msgid "Avoid daytime DDNS redials. Does not affect disconnect detection.<br/>May be unstable due to nighttime traffic."
+msgstr ""
+
+msgid "webhook: Third-party Webhook"
+msgstr ""
+
+msgid "Default is 22. Enter custom SSH port if any."
+msgstr ""
+
+msgid "Unit is hours"
+msgstr ""
+
+msgid "IP Blacklist"
+msgstr ""
+
+msgid "Device Online Notification"
+msgstr ""
+
+msgid "Disable"
+msgstr ""
+
+msgid "Feishu WebHook"
+msgstr ""
+
+msgid "Webhook"
+msgstr ""
+
+msgid "Mode 1 stops all detection, including unattended tasks."
+msgstr ""
+
+msgid "Global Internet Detection Timeout"
+msgstr ""
+
+msgid "Redial to get Public IP"
+msgstr ""
+
+msgid "DND End Time"
+msgstr ""
+
+msgid "MAC Device Info Database"
+msgstr ""
+
+msgid "Push Content"
+msgstr ""
+
+msgid "Redial"
+msgstr ""
+
+msgid "PushDeer Server"
+msgstr ""
+
+msgid "Reset traffic data daily at midnight"
+msgstr ""
+
+msgid "Reboot Router"
+msgstr ""
+
+msgid "Every day at \"..t..\" o'clock"
+msgstr ""
+
+msgid "PushPlus"
+msgstr ""
+
+msgid "Custom Push"
+msgstr ""
+
+msgid "Simplified Version"
+msgstr ""
+
+msgid "Abnormal Traffic Watchlist"
+msgstr ""
+
+msgid "Send Manually"
+msgstr ""
+
+msgid "Requires 4.36M raw data. Full ~1.2M, Lite ~250kb.<br/>Do not use network query without proxy."
+msgstr ""
+
+msgid "<br/>Device alerts pushed only after 5 mins continuous exceedance.<br/>Max once per hour."
+msgstr ""
+
+msgid "Do not modify if you don't understand these options."
+msgstr ""
+
+msgid "Device Offline Notification"
+msgstr ""
+
+msgid "Feishu"
+msgstr ""
+
+msgid "Format: AA:AA:AA:AA:AA:AA|BB:BB... Treats multiple MACs as one user.<br/>Pushes only when all devices are offline to avoid dual-wifi spam."
+msgstr ""
+
+msgid "Get via Interface"
+msgstr ""
+
+msgid "Web Error Attempt Alert"
+msgstr ""
+
+msgid "Max Concurrent Threads"
+msgstr ""
+
+msgid "Self-hosted Bark Server"
+msgstr ""
+
+msgid "PushPlus Channel"
+msgstr ""
+
+msgid "Bark Time-Sensitive Notification"
+msgstr ""
+
+msgid "Device Name"
+msgstr ""
+
+msgid "Count won't reset until reboot. Please add whitelist first."
+msgstr ""
+
+msgid "Modify settings to auto-repair network"
+msgstr ""
+
+msgid "Basic Settings"
+msgstr ""
+
+msgid "Default"
+msgstr ""
+
+msgid "Auto Block"
+msgstr ""
+
+msgid "Shorter times give faster responses but use more resources."
+msgstr ""
+
+msgid "Full Version"
+msgstr ""
+
+msgid "Device Abnormal Traffic Alert (bytes), can append K or M"
+msgstr ""
+
+msgid "Send Test"
+msgstr ""
+
+msgid "PVE Virtual Machine"
+msgstr ""
+
+msgid "Options 1 and 2 won't modify settings, max 2 attempts.<br/>Option 3 backs up to /usr/bin/watchtower/configbak and restores on failure.<br/>[!! COMPATIBILITY NOT GUARANTEED !!] Do not use if unfamiliar."
+msgstr ""
+
+msgid "Device Abnormal Traffic"
+msgstr ""
+
+msgid "PushPlus Topic"
+msgstr ""
+
+msgid "<br/>Sends every * hours starting from 00:00"
+msgstr ""
+
+msgid "WebHook"
+msgstr ""
+
+msgid "<br/>Generally select wan. Choose manually for multi-wan."
+msgstr ""
+
+msgid "Redial only during DND"
+msgstr ""
+
+msgid "Enable Logging"
+msgstr ""
+
+msgid "PushPlus Token"
+msgstr ""
+
+msgid "Push Title"
+msgstr ""
+
+msgid "WeCom Bot Webhook"
+msgstr ""
+
+msgid "System Status"
+msgstr ""
+
+msgid "Offline Detection Count"
+msgstr ""
+
+msgid "Send Interval"
+msgstr ""
+
+msgid "Interval Sending"
+msgstr ""
+
+msgid "When Network Disconnected"
+msgstr ""
+
+msgid "Bark Token"
+msgstr ""
+
+msgid "Device Alias"
+msgstr ""
+
+msgid "Cron Settings"
+msgstr ""
+
+msgid "SSH Login Alert"
+msgstr ""
+
+msgid "Push Mode"
+msgstr ""
+
+msgid "Bark Self-hosted Server Address"
+msgstr ""
+
+msgid "DND Time Settings"
+msgstr ""
+
+msgid "SSH Error Attempt Alert"
+msgstr ""
+
+msgid "Mode 2: Silent Mode"
+msgstr ""
+
+msgid "IPv4 Change Notification"
+msgstr ""
+
+msgid "Send"
+msgstr ""
+
+msgid "SSH Port"
+msgstr ""
+
+msgid "Download to RAM"
+msgstr ""
+
+msgid "Ignore Listed Devices"
+msgstr ""
+
+msgid "Ensure script runs properly to avoid frequent reboots!"
+msgstr ""
+
+msgid "cp: WeCom App"
+msgstr ""
+
+msgid "Output Info"
+msgstr ""
+
+msgid "Host Address"
+msgstr ""
+
+msgid "CPU Temperature Alert"
+msgstr ""
+
+msgid "Watchlist"
+msgstr ""
+
+msgid "Watchtower pushes alerts and logs to various platforms.<br>Supports DingTalk, WeCom, PushPlus."
+msgstr ""
+
+msgid "0 is permanent block. Use with caution.<br>If locked out, change your IP to enter LUCI and clear rules."
+msgstr ""
+
+msgid "WAN Info"
+msgstr ""
+
+msgid "DND when any listed device is online"
+msgstr ""
+
+msgid "<br/>Enter MAC and alias separated by '-', e.g.:<br/>XX:XX:XX:XX:XX:XX-MyPhone"
+msgstr ""
+
+msgid "Unattended Tasks"
+msgstr ""
+
+msgid "Notify only listed devices"
+msgstr ""
+
+msgid "Downloads to RAM, re-downloads on reboot.<br/>Download to flash if no proxy."
+msgstr ""
+
+msgid "Push Title Only"
+msgstr ""
+
+msgid "No Action"
+msgstr ""
+
+msgid "PushDeer Self-hosted Server Address"
+msgstr ""
+
+msgid "Abnormal Traffic DND"
+msgstr ""
+
+msgid "DingTalk Bot Webhook"
+msgstr ""
+
+msgid "Enter Device MAC"
+msgstr ""
+
+msgid "Executes only when all listed devices are offline.<br/>After 1 hour of DND, watched devices with low traffic (~100kb/m) for 5 mins are considered offline."
+msgstr ""
+
+msgid "Bark Notification Sound"
+msgstr ""
+
+msgid "Bark"
+msgstr ""
+
+msgid "Avoid special symbols like \", $, !. Result must be a number for temp comparison."
+msgstr ""
+
+msgid "MAC Filter"
+msgstr ""
+
+msgid "Watchtower"
+msgstr ""
+
+msgid "Hint"
+msgstr ""
+
+msgid "IPv6 API List"
+msgstr ""
+
+msgid "Bark Icon"
+msgstr ""
+
+msgid "PushPlus One-to-Many Push"
+msgstr ""
+
+msgid "Too short time may cause inaccurate detection"
+msgstr ""
+
+msgid "Network Query"
+msgstr ""
+
+msgid "Do Not Disturb (DND)"
+msgstr ""
+
+msgid "WeCom"
+msgstr ""
+
+msgid "Mode 1: Script Suspended"
+msgstr ""
+
+msgid "Interface Name"
+msgstr ""
+
+msgid "PushPlus Group Code"
+msgstr ""
+
+msgid "Send Time"
+msgstr ""
+
+msgid "Device name added to push title to identify source."
+msgstr ""
+
+msgid "Redial skips IP change notification and delays DDNS update.<br/>Ensure redial gets a public IP, otherwise it just causes drops.<br/>Don't bother if you're on a carrier-grade NAT!"
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid "Advanced Settings"
+msgstr ""
+
+msgid "Online Devices"
+msgstr ""
+
+msgid "Log"
+msgstr ""
+
+msgid "Auto Refresh"
+msgstr ""
+
+msgid "Clear Log"
+msgstr ""
+
+msgid "DingTalk Bot Webhook, enter only the part after access_token=<br>Click here to get the call code<br><br>"
+msgstr ""
+
+msgid "WeCom Bot Webhook, enter only the part after key=<br>Click here to get the call code<br><br>"
+msgstr ""
+
+msgid "PushPlus Token<br>Click here to get the call code<br><br>"
+msgstr ""
+
+msgid "PushPlus Custom Webhook<br>For third-party or WeCom calls<br>See here for Custom Webhook setup<br><br>"
+msgstr ""
+
+msgid "PushPlus Group Code<br>Group code for one-to-many push<br>See here for Topic setup<br><br>"
+msgstr ""
+
+msgid "PushDeer Key<br>Click here to get the call code<br><br>"
+msgstr ""
+
+msgid "PushDeer Self-hosted Server Address<br>e.g. https://your.domain:port<br>See here for self-hosted setup<br><br>"
+msgstr ""
+
+msgid "Feishu WebHook<br>Click here to get the call code<br><br>"
+msgstr ""
+
+msgid "Bark Token<br>Click here to get the call code<br><br>"
+msgstr ""
+
+msgid "Bark Self-hosted Server Address<br>e.g. https://your.domain:port<br>See here for self-hosted setup<br><br>"
+msgstr ""
+
+msgid "Bark Notification Sound<br>e.g. silence.caf<br>See here for setup<br><br>"
+msgstr ""
+
+msgid "Bark Notification Icon (iOS15+ only)<br>e.g. http://day.app/assets/images/avatar.jpg<br>See here for setup<br><br>"
+msgstr ""
+
+msgid "Bark Time-Sensitive Notification<br>active: Default, screen lights up immediately.<br/>timeSensitive: Shows even in Focus mode.<br/>passive: Adds to list quietly without lighting up."
+msgstr ""
+
+msgid "CPU Load Alarm Threshold"
+msgstr ""
+
+msgid "Temperature Alarm Threshold"
+msgstr ""
+
+msgid "Bandwidth Limit Per Minute"
+msgstr ""
+
+msgid "Max Failed Login Attempts"
+msgstr ""
+
+msgid "Blacklist Duration (s)"
+msgstr ""
+
+msgid " Hours"
+msgstr ""
+
+msgid "OpenWrt Router Status:"
+msgstr ""
+
+msgid "Custom Temperature Command"
+msgstr ""
+
+msgid "System Uptime Greater Than"
+msgstr ""
+
+msgid "Network Uptime Greater Than"
+msgstr ""
+
+msgid "Max Daily Retries"
+msgstr ""
+
+msgid "Online Devices List"
+msgstr ""
+
+msgid "Hostname"
+msgstr ""
+
+msgid "Online Time"
+msgstr ""
+
+msgid "Telegram Bot"
+msgstr ""
+
+msgid "Telegram Bot Token"
+msgstr ""
+
+msgid "Telegram Chat ID"
+msgstr ""
+
+msgid "Telegram Bot Token<br>Created via @BotFather<br><br>"
+msgstr ""
+
+msgid "Telegram Chat ID<br>Can be user id or group id<br><br>"
+msgstr ""
+
+msgid "Slack"
+msgstr ""
+
+msgid "Slack Webhook URL"
+msgstr ""
+
+msgid "Slack Incoming Webhook URL<br>Starts with https://hooks.slack.com/services/<br><br>"
+msgstr ""
+
+msgid "Mattermost"
+msgstr ""
+
+msgid "Mattermost Webhook URL"
+msgstr ""
+
+msgid "Mattermost Incoming Webhook URL<br>Starts with https://your-mattermost/hooks/<br><br>"
+msgstr ""
+
+msgid "Watchtower Log"
+msgstr ""
+
+msgid "Displays real-time logs and status records produced by Watchtower."
+msgstr ""
+
+msgid "No log data available."
+msgstr ""
+
+msgid "Log is empty."
+msgstr ""
+
+msgid "Log refreshed."
+msgstr ""
+
+msgid "Log cleared successfully."
+msgstr ""
+
+msgid "Failed to clear log: "
+msgstr ""
+
+msgid "Failed to read log file."
+msgstr ""
+
+msgid "Sending Test Message"
+msgstr ""
+
+msgid "Push test message is being sent..."
+msgstr ""
+
+msgid "Test message triggered. Check log or client for details."
+msgstr ""
+
+msgid "Failed to trigger test: "
+msgstr ""
+
+msgid "Sending Scheduled Report"
+msgstr ""
+
+msgid "Manual status report is being sent..."
+msgstr ""
+
+msgid "Status report triggered. Check log or client for details."
+msgstr ""
+
+msgid "Failed to send status report: "
+msgstr ""
+
+msgid "Testing Temperature Command"
+msgstr ""
+
+msgid "Reading device temperature sensors..."
+msgstr ""
+
+msgid "Temperature Sensor Output"
+msgstr ""
+
+msgid "Sensor Value: "
+msgstr ""
+
+msgid "No temperature output returned. Please check sensor command."
+msgstr ""
+
+msgid "Failed to test temperature command: "
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Online"
+msgstr ""
+
+msgid "Unknown Device"
+msgstr ""
+
+msgid "No online devices detected currently or Watchtower service is not running."
+msgstr ""
+
+msgid "Displays devices currently monitored and recorded by Watchtower."
+msgstr ""
+
+msgid "Refresh List"
+msgstr ""
+
+msgid "Client list refreshed."
+msgstr ""
+
+msgid "Refresh"
+msgstr ""
+
+msgid "Local Device Name"
+msgstr ""
+
+msgid "DingTalk Bot Webhook, enter only the part after access_token=<br>Get call code <a href=\"https://open.dingtalk.com/document/robots/custom-robot-access\" target=\"_blank\">Click Here</a><br><br>"
+msgstr ""
+
+msgid "WeCom Bot Webhook, enter only the part after key=<br>Get call code <a href=\"https://developer.work.weixin.qq.com/document/path/91770\" target=\"_blank\">Click Here</a><br><br>"
+msgstr ""
+
+msgid "PushPlus Token<br>Get call code <a href=\"http://pushplus.plus\" target=\"_blank\">Click Here</a><br><br>"
+msgstr ""
+
+msgid "Feishu WebHook<br>Get call code <a href=\"https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNx0jN\" target=\"_blank\">Click Here</a><br><br>"
+msgstr ""
+
+msgid "Bark Token<br>Get call code <a href=\"https://github.com/Finb/Bark\" target=\"_blank\">Click Here</a><br><br>"
+msgstr ""
+
+msgid "PushDeer Key<br>Get call code <a href=\"https://www.pushdeer.com\" target=\"_blank\">Click Here</a><br><br>"
+msgstr ""
+
+msgid "Avoid special characters. The command output must return a numeric value for temperature comparison."
+msgstr ""
+
+msgid "Ensure SSH key-based authentication is configured on the PVE host.<br/>Example configuration:<br/>opkg update && opkg install openssh-client openssh-keygen<br/>ssh-keygen -t rsa<br/>ssh root@10.0.0.2 \"cat >> ~/.ssh/authorized_keys\" < ~/.ssh/id_rsa.pub<br/>ssh -i ~/.ssh/id_rsa root@10.0.0.2 sensors"
+msgstr ""
+
+msgid "Please ensure configurations are correct to avoid unexpected reboots."
+msgstr ""
+
+msgid "Executes redials only during DND hours to minimize impact on daytime network usage."
+msgstr ""
+
+msgid "Executes only when all listed devices are offline.<br/>After 1 hour of DND, watched devices with low traffic (< 100KB/min) for 5 minutes are considered offline."
+msgstr ""
+
+msgid "Options 1 and 2 will not alter configurations (max 2 retries).<br/>Option 3 creates a backup before attempting automatic repair.<br/>Please use with caution."
+msgstr ""
+
+msgid "Ensure public IP is obtainable via redial, otherwise redial will cause network interruption.<br/>Not applicable for carrier-grade NAT (CGNAT) environments."
+msgstr ""
+
+msgid "%s Hours"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Active network interfaces"
+msgstr ""
+
+msgid "Auto-refresh every 5s"
+msgstr ""
+
+msgid "Bottom"
+msgstr ""
+
+msgid "Clearing..."
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Configured"
+msgstr ""
+
+msgid "Current longest online device"
+msgstr ""
+
+msgid "DND & Schedule"
+msgstr ""
+
+msgid "DND On"
+msgstr ""
+
+msgid "Daily at %s:00"
+msgstr ""
+
+msgid "Detection & Performance"
+msgstr ""
+
+msgid "Device List"
+msgstr ""
+
+msgid "Device Summary"
+msgstr ""
+
+msgid "Disabled"
+msgstr ""
+
+msgid "Enabled"
+msgstr ""
+
+msgid "Enter credentials in Basic Settings"
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Every %s hours"
+msgstr ""
+
+msgid "Every day at %s o'clock"
+msgstr ""
+
+msgid "Failed to restart service: "
+msgstr ""
+
+msgid "Filter by name, MAC, IP, interface..."
+msgstr ""
+
+msgid "Filter log lines..."
+msgstr ""
+
+msgid "Fine-tune device detection timeouts, temperature sensors, and unattended recovery tasks."
+msgstr ""
+
+msgid "IP Address"
+msgstr ""
+
+msgid "Inactive"
+msgstr ""
+
+msgid "Incomplete"
+msgstr ""
+
+msgid "Interface"
+msgstr ""
+
+msgid "Interfaces"
+msgstr ""
+
+msgid "Interval: %ss"
+msgstr ""
+
+msgid "Longest Uptime"
+msgstr ""
+
+msgid "MAC Address"
+msgstr ""
+
+msgid "Monitored by Watchtower"
+msgstr ""
+
+msgid "Monitoring"
+msgstr ""
+
+msgid "No matching devices found."
+msgstr ""
+
+msgid "No matching log entries."
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "Not detected"
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid "Push Channel"
+msgstr ""
+
+msgid "Watchtower is currently disabled in configuration. Enable it below and click Save & Apply to run automatically."
+msgstr ""
+
+msgid "Watchtower service restarted."
+msgstr ""
+
+msgid "Watchtower service started."
+msgstr ""
+
+msgid "Watchtower service stopped."
+msgstr ""
+
+msgid "Ready to deliver alerts"
+msgstr ""
+
+msgid "Refreshing..."
+msgstr ""
+
+msgid "Restart"
+msgstr ""
+
+msgid "Restarting..."
+msgstr ""
+
+msgid "Running"
+msgstr ""
+
+msgid "Runtime Log"
+msgstr ""
+
+msgid "Schedule: Disabled"
+msgstr ""
+
+msgid "Selected push channel is missing credentials. Please complete the configuration in Basic Settings."
+msgstr ""
+
+msgid "Sending..."
+msgstr ""
+
+msgid "Service Status"
+msgstr ""
+
+msgid "Service action failed: "
+msgstr ""
+
+msgid "Session"
+msgstr ""
+
+msgid "Start Service"
+msgstr ""
+
+msgid "Starting..."
+msgstr ""
+
+msgid "Stop Service"
+msgstr ""
+
+msgid "Stopped"
+msgstr ""
+
+msgid "Stopping..."
+msgstr ""
+
+msgid "Temperature Sensor"
+msgstr ""
+
+msgid "Top"
+msgstr ""
+
+msgid "Tracked"
+msgstr ""
+
+msgid "View device list →"
+msgstr ""
+
+msgid "d "
+msgstr ""
+
+msgid "h "
+msgstr ""
+
+msgid "m "
+msgstr ""
+
+msgid "s"
+msgstr ""
+
+msgid "Configure →"
+msgstr ""
+
+msgid "Configure push channels, notification triggers, schedules, Do Not Disturb rules, and advanced options."
+msgstr ""
+
+msgid "Watchtower is currently disabled in configuration. Enable it in Settings and click Save & Apply to run automatically."
+msgstr ""
+
+msgid "Selected push channel is missing credentials. Please complete the configuration in Settings."
+msgstr ""
+
+msgid "Service failed to stay running. Please check Settings or Runtime Log."
+msgstr ""
+
+msgid "Watchtower pushes router alerts, device status, and logs to your preferred notification channels."
+msgstr ""
+
+msgid "Discord"
+msgstr ""
+
+msgid "Discord Webhook URL"
+msgstr ""
+
+msgid "Discord Channel Webhook URL<br>Starts with https://discord.com/api/webhooks/"
+msgstr ""
+
+msgid "ntfy"
+msgstr ""
+
+msgid "ntfy Server URL"
+msgstr ""
+
+msgid "ntfy server address, defaults to https://ntfy.sh or your self-hosted URL."
+msgstr ""
+
+msgid "ntfy Topic"
+msgstr ""
+
+msgid "Topic name to publish notifications to."
+msgstr ""
+
+msgid "Email (SMTP)"
+msgstr ""
+
+msgid "SMTP Server"
+msgstr ""
+
+msgid "SMTP server hostname, e.g. smtp.gmail.com or smtp.qq.com"
+msgstr ""
+
+msgid "SMTP Port"
+msgstr ""
+
+msgid "Encryption"
+msgstr ""
+
+msgid "SSL/TLS (Port 465)"
+msgstr ""
+
+msgid "STARTTLS (Port 587)"
+msgstr ""
+
+msgid "None (Port 25)"
+msgstr ""
+
+msgid "SMTP Username"
+msgstr ""
+
+msgid "Email account username used for SMTP authentication."
+msgstr ""
+
+msgid "SMTP Password / App Password"
+msgstr ""
+
+msgid "Sender Address"
+msgstr ""
+
+msgid "Optional, defaults to SMTP Username if left blank."
+msgstr ""
+
+msgid "Recipient Address"
+msgstr ""
+
+msgid "Destination email address to receive alerts."
+msgstr ""
+
+msgid "Instant Event Push"
+msgstr ""
+
+msgid "Trigger immediate notifications (< 2s) via system events for WAN IP changes, Web/SSH logins, and new DHCP devices, instead of waiting for the polling interval."
+msgstr ""
+
+msgid "Online Notification Filter"
+msgstr ""
+
+msgid "All Devices"
+msgstr ""
+
+msgid "Unknown (Brand-New) Devices Only"
+msgstr ""
+
+msgid "Whitelist Filter (Ignore Listed MACs)"
+msgstr ""
+
+msgid "Blacklist Filter (Notify Only Listed MACs)"
+msgstr ""
+
+msgid "Prevent frequent reconnect spam. In \"Unknown Devices Only\" mode, each new MAC is notified once on first sight, Whitelist MACs are ignored, and Blacklist MACs always notify."
+msgstr ""
+
+msgid "Device Whitelist (Ignore)"
+msgstr ""
+
+msgid "Trusted devices in this list will never trigger online notifications."
+msgstr ""
+
+msgid "Device Blacklist (Watch)"
+msgstr ""
+
+msgid "Devices in this list will always trigger online notifications when connecting."
+msgstr ""
+
+msgid "Instant Push"
+msgstr ""
+
+msgid "Instant Push listens to system events (hotplug.d, logread, DHCP) to deliver notifications within 2 seconds without waiting for the polling cycle."
+msgstr ""
+
+msgid "Online Notification Mode"
+msgstr ""
+
+msgid "All Devices (except Whitelist)"
+msgstr ""
+
+msgid "Unknown / First-Seen Devices Only"
+msgstr ""
+
+msgid "Blacklist (Watchlist) Devices Only"
+msgstr ""
+
+msgid "Combine freely with Whitelist (always ignore) and Blacklist (always notify) below. In \"Unknown / First-Seen\" mode, each new MAC is recorded in Known Devices and notified only once."
+msgstr ""
+
+msgid "Devices in this list will always trigger online notifications when connecting (overrides Whitelist/Known Devices)."
+msgstr ""
+
+msgid "Known Devices Record"
+msgstr ""
+
+msgid "MAC addresses already seen by \"Unknown / First-Seen\" mode (one per line). Remove a MAC to re-trigger its first-seen alert, or clear all to reset."
+msgstr ""
+
+msgid "1. Device Blacklist (Always Notify)"
+msgstr ""
+
+msgid "Highest priority: devices in this list always trigger online notifications regardless of the mode below."
+msgstr ""
+
+msgid "2. Device Whitelist (Always Ignore)"
+msgstr ""
+
+msgid "Second priority: trusted devices in this list never trigger online notifications."
+msgstr ""
+
+msgid "3. Other Devices Policy"
+msgstr ""
+
+msgid "Notify All Other Devices"
+msgstr ""
+
+msgid "Notify Unknown (First-Seen) Devices Only"
+msgstr ""
+
+msgid "Do Not Notify Other Devices (Blacklist Only)"
+msgstr ""
+
+msgid "Applies to devices not matched by Rules 1 & 2 above."
+msgstr ""
+
+msgid "Event Listener & IP Change"
+msgstr ""
+
+msgid "Device Online / Offline & Filtering"
+msgstr ""
+
+msgid "Web / SSH Login Security"
+msgstr ""
+
+msgid "Temperature Sensor Mode"
+msgstr ""
+
+msgid "Auto (CPU / SoC Priority)"
+msgstr ""
+
+msgid "Auto (Highest Chip Temperature)"
+msgstr ""
+
+msgid "Auto-detects /sys/class/thermal and /sys/class/hwmon across ARM, x86, and MIPS. You may also enter a custom command returning a numeric value."
+msgstr ""
+
+msgid "Primary Sensor Value: "
+msgstr ""
+
+msgid "Instant Event Push (Global Master Switch)"
+msgstr ""
+
+msgid "Global switch for both sections below: when enabled, IP/login events and device online alerts are delivered within 2 seconds via system events instead of polling."
+msgstr ""
+
+msgid "Enable Instant Push"
+msgstr ""
+
+msgid "Disable Instant Push"
+msgstr ""
+
+msgid "Running Status"
+msgstr ""

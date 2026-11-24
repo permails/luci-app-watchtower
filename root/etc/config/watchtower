@@ -1,0 +1,11 @@
+
+config watchtower 'watchtower'
+	option watchtower_enable '0'
+	option sleeptime '60'
+	option watchtower_ipv6 '0'
+	option watchtower_up '1'
+	option watchtower_down '1'
+	option cpuload_enable '1'
+	option cpuload '2'
+	option temperature_enable '0'
+	option debuglevel '1'

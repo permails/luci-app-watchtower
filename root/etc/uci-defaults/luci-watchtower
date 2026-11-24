@@ -1,0 +1,12 @@
+#!/bin/sh
+# Author: permails <logo@permails.com>
+
+uci -q batch <<-EOF >/dev/null
+	delete ucitrack.@watchtower[-1]
+	add ucitrack watchtower
+	set ucitrack.@watchtower[-1].init=watchtower
+	commit ucitrack
+EOF
+
+rm -rf /tmp/luci-*
+exit 0
